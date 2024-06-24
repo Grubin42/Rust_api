@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/database.Dockerfile
+    ports:
+      - "3306:3306" 
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./docker/backend.Dockerfile
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      - db
+
+  caddy:
+    build:
+      context: .
+      dockerfile: ./docker/caddy.Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/caddy
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

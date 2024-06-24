@@ -1,0 +1,96 @@
+1. Système d’authentification
+
+Objectifs
+
+	•	Permettre aux utilisateurs de s’inscrire et de créer un compte et de modifier un compte et de supprimer un compte.
+	•	Permettre aux utilisateurs de se connecter en utilisant leurs identifiants.
+	•	Protéger les routes sensibles pour que seules les personnes authentifiées puissent y accéder.
+	•	Gérer les sessions utilisateurs pour maintenir l’état de connexion.
+
+Composants principaux
+
+	1.	Inscription (Register) :
+	•	Formulaire d’inscription où les utilisateurs peuvent créer un compte en fournissant des informations telles que le nom, l’email et le mot de passe.
+	•	Vérification et validation des informations fournies par l’utilisateur.
+	•	Hachage des mots de passe avant de les stocker dans la base de données.
+	2.	Connexion (Login) :
+	•	Formulaire de connexion où les utilisateurs peuvent se connecter en fournissant leur email et leur mot de passe.
+	•	Vérification des informations d’identification fournies par rapport aux informations stockées dans la base de données.
+	•	Génération d’un jeton de session ou d’un cookie pour maintenir l’état de connexion de l’utilisateur.
+	3.	Profil :
+	•	Page où les utilisateurs authentifiés peuvent voir et modifier leurs informations de profil.
+	•	Protection de cette route pour qu’elle ne soit accessible que par les utilisateurs authentifiés.
+	4.	Déconnexion (Logout) :
+	•	Permettre aux utilisateurs de se déconnecter en supprimant leur jeton de session ou leur cookie.
+
+2. Pages d’authentification
+
+Pages à implémenter
+
+	1.	Page d’inscription (Register) :
+	•	Formulaire pour la création d’un compte.
+	•	Champs pour le nom, l’email et le mot de passe.
+	•	Bouton pour soumettre les informations.
+	2.	Page de connexion (Login) :
+	•	Formulaire pour la connexion.
+	•	Champs pour l’email et le mot de passe.
+	•	Bouton pour soumettre les informations.
+	3.	Page de profil (Profile) :
+	•	Affichage des informations de l’utilisateur authentifié.
+	•	Options pour modifier les informations de profil.
+	•	Bouton pour se déconnecter.
+
+3. Routes pour servir les différentes pages
+
+Routes à implémenter
+
+	1.	Routes publiques :
+	•	/register : Route pour afficher et traiter le formulaire d’inscription.
+	•	/login : Route pour afficher et traiter le formulaire de connexion.
+	2.	Routes protégées :
+	•	/profile : Route pour afficher et modifier les informations de profil de l’utilisateur authentifié.
+
+4. Middleware/Guard
+
+Middleware/Guard à implémenter
+
+	1.	Middleware d’authentification :
+	•	Vérifie si un utilisateur est authentifié avant d’accéder à certaines routes protégées.
+	•	Redirige les utilisateurs non authentifiés vers la page de connexion.
+	2.	Middleware de gestion des sessions :
+	•	Gère les jetons de session ou les cookies pour maintenir l’état de connexion de l’utilisateur.
+	•	Permet de vérifier l’authenticité des requêtes en vérifiant les jetons/cookies.
+
+Résumé
+
+Inscription (Register)
+
+	•	Formulaire pour créer un compte.
+	•	Validation et hachage des mots de passe.
+	•	Stockage des informations dans la base de données.
+
+Connexion (Login)
+
+	•	Formulaire pour se connecter.
+	•	Vérification des identifiants.
+	•	Gestion des sessions via jetons ou cookies.
+
+Profil
+
+	•	Affichage et modification des informations de l’utilisateur.
+	•	Protection des routes pour les utilisateurs authentifiés.
+
+Déconnexion (Logout)
+
+	•	Suppression des jetons de session ou des cookies.
+
+Routes
+
+	•	/register : Inscription.
+	•	/login : Connexion.
+	•	/profile : Profil utilisateur (protégée).
+
+Middleware/Guard
+
+	•	Vérifie si l’utilisateur est authentifié.
+	•	Gère les sessions et les jetons de session.

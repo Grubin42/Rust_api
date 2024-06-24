@@ -1,0 +1,5 @@
+DB_USER=moi
+DB_PASSWORD=1234
+DB_NAME=mydatabase
+DB_ROOT_PASSWORD=root
+DATABASE_URL=mysql://moi:1234@localhost:3306/mydatabase
